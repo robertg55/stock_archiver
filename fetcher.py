@@ -4,6 +4,7 @@ import logging
 import time
 from datetime import datetime
 import boto3
+from decimal import Decimal
 
 logging.basicConfig(
     format="%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s",
@@ -44,11 +45,11 @@ class StockTracker(threading.Thread):
         table = dyn_resource.Table(message["id"])
         table.put_item(
             Item={
-                "timestamp": decimal(message["timestamp"]),
-                "price": decimal(round(message["price"], 4)),
-                "writetime": decimal(round(datetime.now().timestamp(), 4)),
-                "changePercent": decimal(message["timestamp"]),
-                "dayVolume": decimal(message["timestamp"]),
-                "change": decimal(message["timestamp"]),
+                "timestamp": Decimal(str(message["timestamp"])),
+                "price": Decimal(str(round(message["price"], 4))),
+                "writetime": Decimal(str(round(datetime.now().timestamp(), 4))),
+                "changePercent": Decimal(str(message["timestamp"])),
+                "dayVolume": Decimal(str(message["timestamp"])),
+                "change": Decimal(str(message["timestamp"])),
             }
         )
