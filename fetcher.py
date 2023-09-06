@@ -39,16 +39,16 @@ class StockTracker(threading.Thread):
         self.run()
 
 
-def write_data(message):
-    dyn_resource = boto3.resource("dynamodb")
-    table = dyn_resource.Table(message["id"])
-    table.put_item(
-        Item={
-            "timestamp": message["timestamp"],
-            "price": round(message["price"], 4),
-            "writetime": round(datetime.now().timestamp(), 4),
-            "changePercent": message["timestamp"],
-            "dayVolume": message["timestamp"],
-            "change": message["timestamp"],
-        }
-    )
+    def write_data(self, message):
+        dyn_resource = boto3.resource("dynamodb")
+        table = dyn_resource.Table(message["id"])
+        table.put_item(
+            Item={
+                "timestamp": message["timestamp"],
+                "price": round(message["price"], 4),
+                "writetime": round(datetime.now().timestamp(), 4),
+                "changePercent": message["timestamp"],
+                "dayVolume": message["timestamp"],
+                "change": message["timestamp"],
+            }
+        )
