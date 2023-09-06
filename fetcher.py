@@ -44,11 +44,11 @@ class StockTracker(threading.Thread):
         table = dyn_resource.Table(message["id"])
         table.put_item(
             Item={
-                "timestamp": message["timestamp"],
-                "price": round(message["price"], 4),
-                "writetime": round(datetime.now().timestamp(), 4),
-                "changePercent": message["timestamp"],
-                "dayVolume": message["timestamp"],
-                "change": message["timestamp"],
+                "timestamp": decimal(message["timestamp"]),
+                "price": decimal(round(message["price"], 4)),
+                "writetime": decimal(round(datetime.now().timestamp(), 4)),
+                "changePercent": decimal(message["timestamp"]),
+                "dayVolume": decimal(message["timestamp"]),
+                "change": decimal(message["timestamp"]),
             }
         )
