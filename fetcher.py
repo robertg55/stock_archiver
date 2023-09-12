@@ -48,8 +48,8 @@ class StockTracker(threading.Thread):
                 "timestamp": Decimal(str(message["timestamp"])),
                 "price": Decimal(str(round(message["price"], 4))),
                 "writetime": Decimal(str(round(datetime.now().timestamp(), 4))),
-                "changePercent": Decimal(str(message["timestamp"])),
-                "dayVolume": Decimal(str(message["timestamp"])),
-                "change": Decimal(str(message["timestamp"])),
+                "changePercent": Decimal(str(message["changePercent"])),
+                "dayVolume": Decimal(str(message["dayVolume"])),
+                "change": Decimal(str(message["change"])),
             }
         )
